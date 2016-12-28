@@ -1,5 +1,5 @@
-#----------------libraries--------------------
-#Install packages if necessary.
+##----------------libraries--------------------
+##Install packages if necessary.
 # install.packages("plyr")
 # install.packages("sp")
 # install.packages("maptools")
@@ -811,7 +811,7 @@ for(g in cper) {
           parasitic <- disp2(parasitic, pmd, psd, xmax) #run the dispersal function to get new coordinates
           parasitic <- parasitic[sample(nrow(parasitic)),] #randomize row order
           coordinates(parasitic) <- c("x", "y")
-          points(parasitic$x, parasitic$y, pch = 2, cex = 0.5, col = parasitic$fill) #plot the points
+          ############points(parasitic$x, parasitic$y, pch = 2, cex = 0.5, col = parasitic$fill) #plot the points
           zombies <- col[col$queen == 0,] #subset of colonies without living queens
           alive <- over(parasitic, zombies) #Dataframe index of parasitic queens that landed in zombie colonies
           if(any(!is.na(alive$ID))) { #test to see if any parasitic queens landed in zombie colonies 
@@ -843,7 +843,7 @@ for(g in cper) {
           claustral$x1 <- claustral$x #repeated coordinates columns for making spatial points class
           claustral$y1 <- claustral$y
           coordinates(claustral) <- c("x1", "y1")
-          points(claustral$x, claustral$y, cex = 0.5, col = parasitic$fill)
+          points(claustral$x, claustral$y, cex = 0.5, col = claustral$fill)
           claustral <- claustral[is.na(over(claustral, col)$x),] #only claustral queens that land in empty space (where x is NA) survive  
           if(nrow(claustral) > 0) {
             claustral$ID <- seq(from=maxID, by=1, length.out= nrow(claustral)) #establish unique ID numbers (necessary for spatial object designation)
